@@ -1,13 +1,30 @@
 import React from 'react';
 
 class Item extends React.Component {
+    
+    constructor(props) {
+        super(props)
 
+        this.state = {
+            clicks: 0,
+            totalRemaining: 100
+        }
+    }
     clickMe() {
-        console.log("I was clicked by", this.props.name)
+        this.setState({
+            clicks: this.state.clicks + 1,
+            totalRemaining: this.state.totalRemaining - 1
+        })
     }
     render() {
         return (
-            <h1 onClick={() => this.clickMe()}>Hello From {this.props.name}</h1>
+            <div>
+                <h1 onClick={() => this.clickMe()}>
+                Hello From {this.props.name}
+                </h1>
+                <span>{this.state.clicks} is the no.of clicks. {this.state.totalRemaining}</span>
+            </div>
+            
         )
     }
 }
